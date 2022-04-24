@@ -1,0 +1,96 @@
+﻿@model EntityLayer.Concrete.Writer;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Yazar Üyelik Kayıt Formu<br />Şimdi Hemen Kayıt Ol!</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                {
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationName">Adınız Soyadınız</label>
+                            @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control", name = "WriterName", id = "validationDefault01", placeholder = "Said Gülmez" })
+                            @Html.ValidationMessageFor(x => x.WriterName, "", new { @class = "text-danger" })
+                            @*<input type="text" class="form-control" name="WriterName" id="validationDefault01" placeholder="Said Gülmez" required="">*@
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationMail">Mail Adresiniz</label>
+                            @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control", name = "WriterMail", id = "validationDefault02", placeholder = "ornek@gmail.com" })
+                            @Html.ValidationMessageFor(x => x.WriterMail, "", new { @class = "text-danger" })
+                            @*<input type="email" class="form-control" name="WriterMail" id="validationDefault02" placeholder="ornek@gmail.com" required="">*@
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="validationInputPassword mb-2">Şifre</label>
+                            @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control", name = "WriterPassword", id = "password1", placeholder = "******" })
+                            @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @class = "text-danger" })
+                            @*<input type="password" class="form-control" name="WriterPassword" id="password1" placeholder="******" required="">*@
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="validationInputPassword2 mb-2">Şifre Onay</label>
+                            @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control", name = "WriterPassword", id = "password2", placeholder = "******" })
+                            @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @class = "text-danger" })
+                            @*<input type="password" class="form-control" id="password2" placeholder="******" required="">*@
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="validationWriterpp mb-2">Resim URL</label>
+                            @Html.TextBoxFor(x => x.WriterImage, new { @class = "form-control", name = "WriterImage", id = "pp_url", placeholder = "https://i.imgur.com/wJvBXrf.png" })
+                            @Html.ValidationMessageFor(x => x.WriterImage, "", new { @class = "text-danger" })
+                            @*<input type="url" class="form-control" name="WriterImage" id="pp_url" placeholder="https://i.imgur.com/wJvBXrf.png" required="">*@
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="validationCity mb-2"></label>
+                            <br />
+                            <label>
+                            </label>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="checkbox" id="checkbox1" required="" />
+                            <label for="checkbox1">
+                                <a href="#" id="btn1" style="font-weight:bold">Sözleşme şartlarını kabul etmek için kutucuğu işaretleyin.</a>
+                            </label>
+                            <br />
+                            <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @* ------ Script Kısmı ------- *@
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script>
+        var writer_Password = document.getElementById("password1")
+        var confirm_password = document.getElementById("password2");
+
+        function validatePassword() {
+            if (writer_Password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Şifreler Eşleşmiyor.");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+        writer_Password.onchange = validatePassword;
+        writer_Password.onkeyup = validatePassword;
+        confirm_password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
+    <script>
+        $('#checkbox1').click(function () {
+            swal("Şartları kabul etmek istediğinizden emin misiniz?","Sözleşme şartlarını okudunuz kabul ettiniz. Eğer okumadıysanız lütfen önce okuyunuz. Teşekkürler iyi bloglar!");
+        });
+        $('#btn1').click(function () {
+            swal("Kullanım Şartları","Sitemizde KVKK kanunları uygun şekilde verilerinizi tutmaktayız. Herhangi 3. şahıs veri şirketlerine bu verileri satmayız, işletmeyiz ve kullandırtmayız. Girdiğiniz e-posta adresinize haber mailleri ve blog güncellemeleriniz yollanacaktır. Eğer e-posta bülteninden çıkmak isterseniz bunu profilinizden ayarlayabilirsiniz. Şifreniz veri tabanımızda kimsenin erişemeyeceği şekilde tutulmaktadır.");
+        });
+    </script>
+</section>
