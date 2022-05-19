@@ -28,7 +28,7 @@ namespace CoreDemo
         {
             services.AddControllersWithViews();
 
-            // services.AddSession();
+            //services.AddSession();
 
             // Bütün projeyi authorize ile kapsülledik.
             services.AddMvc(config =>
@@ -63,7 +63,7 @@ namespace CoreDemo
                 app.UseHsts();
             }
 
-            app.UseSession();
+            //app.UseSession();
             app.UseAuthentication();
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 

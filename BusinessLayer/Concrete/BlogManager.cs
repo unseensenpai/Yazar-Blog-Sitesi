@@ -42,6 +42,11 @@ namespace BusinessLayer.Concrete
         {
             return _blogDal.GetList();
         }
+
+        public List<Blog> GetLast3Blog()
+        {
+            return _blogDal.GetList().TakeLast(3).ToList();
+        }
         
         public void UpdateBlog(Blog blog)
         {
