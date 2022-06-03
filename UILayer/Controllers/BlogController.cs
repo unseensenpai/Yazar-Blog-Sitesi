@@ -17,6 +17,7 @@ namespace CoreDemo.Controllers
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
         {
             var values = bm.GetBlogListWithCategory();
@@ -30,13 +31,13 @@ namespace CoreDemo.Controllers
         }
         public IActionResult BlogListByWriter(int id)
         {
-            var values = bm.GetBlogListByWriter(1);
+            var values = bm.GetBlogListWithCategoryByWriter(1);
             return View(values);
         }
+
         [HttpGet]
         public IActionResult AddBlog()
-        {
-            CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+        {           
             List<SelectListItem> catvalues = (from x in cm.GetList()
                                               select new SelectListItem
                                               {
@@ -51,6 +52,13 @@ namespace CoreDemo.Controllers
         {
             BlogValidator validator = new BlogValidator();
             ValidationResult results = validator.Validate(p);
+            List<SelectListItem> catvalues = (from x in cm.GetList()
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.CategoryName,
+                                                  Value = x.CategoryID.ToString(),
+                                              }).ToList();
+            ViewBag.cv = catvalues;
             if (results.IsValid)
             {
                 p.BlogStatus = true;
@@ -66,6 +74,35 @@ namespace CoreDemo.Controllers
                 }
             }
             return View();
+        }
+        public IActionResult DeleteBlog(int id)
+        {
+            var blogvalue = bm.TGetById(id);
+            bm.DelT(blogvalue);
+            return RedirectToAction("BlogListByWriter");
+        }
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            var blogvalue = bm.TGetById(id);
+            List<SelectListItem> catvalues = (from x in cm.GetList()
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.CategoryName,
+                                                  Value = x.CategoryID.ToString(),
+                                              }).ToList();
+            ViewBag.cv = catvalues;
+            return View(blogvalue);
+        }
+        [HttpPost]
+        public IActionResult EditBlog(Blog p)
+        {
+            var blogvalue = bm.TGetById(p.BlogID);
+            p.WriterID = 1;
+            p.BlogCreateDate = DateTime.Parse(blogvalue.BlogCreateDate.ToShortDateString());
+            p.BlogStatus = true;
+            bm.UpdateT(p);
+            return RedirectToAction("BlogListByWriter");
         }
     }
 

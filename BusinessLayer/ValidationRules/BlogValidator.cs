@@ -18,7 +18,7 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.BlogContent).MaximumLength(4000).WithMessage("Blog içeriği maksimum 4000 karakter olmalıdır.");
             RuleFor(x => x.BlogImage).NotEmpty().WithMessage("Blog görselini boş bırakamazsınız.");
             RuleFor(x => x.BlogTitle).MaximumLength(75).WithMessage("Maksimum 75 karakter kullanarak başlık koyabilirsiniz.");
-            RuleFor(x => x.BlogTitle).MinimumLength(75).WithMessage("Minimum 4 karakter kullanarak başlık koyabilirsiniz.");
+            RuleFor(x => x.BlogTitle).MinimumLength(4).WithMessage("Minimum 4 karakter kullanarak başlık koyabilirsiniz.");
 
         }
     }
