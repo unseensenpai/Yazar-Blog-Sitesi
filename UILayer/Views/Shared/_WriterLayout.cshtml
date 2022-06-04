@@ -25,10 +25,10 @@
 <body>
     <div class="container-scroller">
         <!-- partial:~/writer/partials/_navbar.html -->
-        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <nav class="navbar navbar-expand default-layout-navbar col-lg-12 col-12 p-1 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="~/Dashboard/Index"><img src="~/CoreBlogTema/images/unseenlogo-33.png" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="~/Dashboard/Index"><img src="~/CoreBlogTema/images/unseenlogo-33.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo" style="background-size: contain; background-repeat: no-repeat; background-position: center center; float: left; width:auto; zoom:1.25" href="~/Dashboard/Index"><img src="~/writer/assets/images/LogoBrand-trans.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="~/Dashboard/Index"><img src="~/writer/assets/images/favicon.ico" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -75,14 +75,14 @@
                             <i class="mdi mdi-email-outline"></i>
                             <span class="count-symbol bg-warning"></span>
                         </a>
-                       @await Component.InvokeAsync("WriterMessageNotification") 
+                        @await Component.InvokeAsync("WriterMessageNotification")
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
                             <i class="mdi mdi-bell-outline"></i>
                             <span class="count-symbol bg-danger"></span>
                         </a>
-                        @await Component.InvokeAsync("WriterNotification") 
+                        @await Component.InvokeAsync("WriterNotification")
                     </li>
                     <li class="nav-item nav-logout d-none d-lg-block">
                         <a class="nav-link" href="#">
@@ -130,6 +130,9 @@
     <script src="~/writer/assets/js/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
+    <script src="~/writer/assets/js/dashboard.js"></script>
+    <script src="~/writer/assets/js/todolist.js"></script>
+    <script src="~/writer/assets/vendors/chart.js/Chart.min.js"></script>
     <!-- End custom js for this page -->
 </body>
 </html>

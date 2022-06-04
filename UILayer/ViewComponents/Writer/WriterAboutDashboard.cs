@@ -6,16 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UI_Layer.ViewComponents.Blog
-{
-    public class BlogListDashboard : ViewComponent
+namespace UI_Layer.ViewComponents.Writer
+{   
+    public class WriterAboutDashboard : ViewComponent
     {
-        BlogManager bm = new BlogManager(new EfBlogRepository());
+        WriterManager wm = new WriterManager(new EfWriterRepository());
         public IViewComponentResult Invoke()
         {
-            var values = bm.GetBlogListWithCategory();
+            var values = wm.GetWriterByID(1);
             return View(values);
         }
     }
 }
-    

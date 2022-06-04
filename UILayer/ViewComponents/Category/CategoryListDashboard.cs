@@ -6,16 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UI_Layer.ViewComponents.Blog
+namespace UI_Layer.ViewComponents.Category
 {
-    public class BlogListDashboard : ViewComponent
+    public class CategoryListDashboard : ViewComponent
     {
-        BlogManager bm = new BlogManager(new EfBlogRepository());
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IViewComponentResult Invoke()
         {
-            var values = bm.GetBlogListWithCategory();
+            var values = cm.GetList();
             return View(values);
         }
     }
 }
-    
