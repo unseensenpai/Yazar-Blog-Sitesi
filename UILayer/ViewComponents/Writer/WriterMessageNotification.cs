@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,10 @@ namespace UI_Layer.ViewComponents.Writer
     {
         public IViewComponentResult Invoke()
         {
-            return View();
+            MessageManager mm = new MessageManager(new EfMessageRepository());
+            string p = "ornek@gmail.com";
+            var values = mm.GetRecieverListByWriter(p);
+            return View(values);
         }
     }
 }
