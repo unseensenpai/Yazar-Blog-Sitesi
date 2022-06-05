@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
-{
+{   
     public class NotificationManager : INotificationService
     {
         INotificationDal _notificationDal;

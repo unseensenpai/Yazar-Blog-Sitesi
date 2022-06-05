@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -11,23 +12,27 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using UI_Layer.Models;
 
 namespace UI_Layer.Controllers
 {
     //[Authorize] // Yazarla ilgili hiçbir resulta ulaşamaz. Proje seviyesinde authorize için Startup.cs incele.
-    [AllowAnonymous]
+    
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
-        AddProfileImage api = new AddProfileImage();
         Writer w = new Writer();
+        Context c = new Context();
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
         public IActionResult WriterProfile()
         {
+            var userMail = User.Identity.Name;
+            ViewBag.v = userMail;
+            var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.v2 = writerName;
             return View();
         }
         public IActionResult WriterMail()
@@ -49,19 +54,26 @@ namespace UI_Layer.Controllers
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var writervalues = wm.TGetById(1);
+            var userMail = User.Identity.Name;
+            ViewBag.v = userMail;
+            var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.v2 = writerName;            
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var writervalues = wm.TGetById(writerID);
             return View(writervalues);
         }
         [HttpPost]
         public IActionResult WriterEditProfile(Writer p, IFormFile imageFile)
         {
+            var userMail = User.Identity.Name;
+            ViewBag.v = userMail;
+            var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.v2 = writerName;
             WriterValidator wl = new WriterValidator();
             ValidationResult results = wl.Validate(p);
             if (results.IsValid)
             {
                 wm.UpdateT(p);
-                api.ImageAdd(imageFile, out string imageName);
-                w.WriterImage = imageName;
                 return RedirectToAction("Index", "Dashboard");
             }
             else

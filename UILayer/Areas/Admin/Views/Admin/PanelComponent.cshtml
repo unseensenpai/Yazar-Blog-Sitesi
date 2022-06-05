@@ -1,0 +1,26 @@
+﻿@using EntityLayer.Concrete
+@model List<Admin>
+@foreach (var item in Model)
+{
+<div class="col-lg-4">
+    <div class="contact-box">
+        <a class="row" href="#">
+            <div class="col-4">
+                <div class="text-center">
+                    <img alt="image" class="rounded-circle m-t-xs img-fluid" src="~/ImageFiles/resim1.png" />
+                    <div class="m-t-xs font-bold">@item.Role</div>
+                </div>
+            </div>
+            <div class="col-8">
+                <h3><strong>@item.Name</strong></h3>
+                <p><i class="fa fa-map-marker"></i> @item.ShortDescription</p>
+                <address>
+                    <strong>Unseen Blog</strong><br>
+                    Cumhuriyet Mahallesi<br>
+                    Kütahya Merkez<br>
+                    <abbr title="Phone">Telefon:</abbr> 5076405572
+                </address>
+            </div>
+        </a>
+    </div>
+</div>}

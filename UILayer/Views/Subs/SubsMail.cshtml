@@ -9,32 +9,3 @@
         <input type="submit" value="Abone Ol">
     </form>
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("SubsMail").click(function () {
-
-            var ID = $("#MailID").val();
-            $.ajax({
-                url: '/Subs/SubsMail' + ID,
-                type: 'Post',
-                dataType: 'json',
-                success: function (data) {
-                    $('MailID').html(data.ID);
-                    $('Mail').html(data.Mail);
-                    $('MailStatus').html(data.MailStatus);
-
-                error: function (hata, ajaxOptions, thrownError) {
-                        alert(hata.status);
-                        alert(thrownError);
-                        alert(hata.responseText);
-                }
-                }
-            }
-            )
-        }
-
-    }))
-
-</script>

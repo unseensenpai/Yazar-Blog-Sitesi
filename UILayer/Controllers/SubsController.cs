@@ -17,20 +17,13 @@ namespace CoreDemo.Controllers
         {
             return PartialView();
         }
-        //[HttpPost]
-        //public PartialViewResult SubsMail(Subs p)
-        //{
-        //    p.MailStatus = true;
-        //    sm.AddSubs(p);
-        //    return PartialView();
-        //}
 
         [HttpPost]
-        public JsonResult SubsMail(Subs p)
+        public ActionResult SubsMail(Subs p)
         {
             p.MailStatus = true;
             sm.AddSubs(p);
-            return Json("Abone Olundu. Teşekkürler.");
+            return RedirectToAction("BlogReadAll/id","Blog");
         }
     }
 }

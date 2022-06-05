@@ -15,6 +15,8 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;
+            ViewBag.userName = userMail;
             return View();
         }
         [HttpPost]

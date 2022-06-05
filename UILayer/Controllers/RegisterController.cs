@@ -32,6 +32,7 @@ namespace CoreDemo.Controllers
             {
                 p.WriterStatus = true;
                 p.WriterAbout = "Hakkında";
+                p.WriterImage = "/writer/assets/images/faces/face2.jpg";
                 wm.AddT(p);
                 return RedirectToAction("Index", "Blog");
             }

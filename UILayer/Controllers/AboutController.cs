@@ -13,6 +13,8 @@ namespace CoreDemo.Controllers
         AboutManager abm = new AboutManager(new EfAboutRepository());
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;
+            ViewBag.userName = userMail;
             var values = abm.GetList();
             return View(values);
         }
