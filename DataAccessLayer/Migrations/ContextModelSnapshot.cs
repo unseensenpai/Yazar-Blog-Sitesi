@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
@@ -15,16 +17,18 @@ namespace DataAccessLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("EntityLayer.Concrete.About", b =>
                 {
                     b.Property<int>("AboutID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AboutID"));
 
                     b.Property<string>("AboutDetails1")
                         .HasColumnType("nvarchar(max)");
@@ -53,8 +57,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("AdminID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminID"));
 
                     b.Property<string>("ImageURL")
                         .HasColumnType("nvarchar(max)");
@@ -83,8 +88,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("BlogID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BlogID"));
 
                     b.Property<string>("BlogContent")
                         .HasColumnType("nvarchar(max)");
@@ -123,8 +129,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("BlogRateID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BlogRateID"));
 
                     b.Property<int>("BlogID")
                         .HasColumnType("int");
@@ -144,8 +151,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("CategoryID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"));
 
                     b.Property<string>("CategoryDescription")
                         .HasColumnType("nvarchar(max)");
@@ -165,8 +173,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("CommentID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentID"));
 
                     b.Property<int>("BlogID")
                         .HasColumnType("int");
@@ -200,8 +209,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("ContactID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactID"));
 
                     b.Property<DateTime>("ContactDate")
                         .HasColumnType("datetime2");
@@ -230,8 +240,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("MatchID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MatchID"));
 
                     b.Property<int?>("GuestTeamID")
                         .HasColumnType("int");
@@ -258,8 +269,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("MessageID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageID"));
 
                     b.Property<DateTime>("MessageDate")
                         .HasColumnType("datetime2");
@@ -288,8 +300,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("MessageID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageID"));
 
                     b.Property<DateTime>("MessageDate")
                         .HasColumnType("datetime2");
@@ -322,8 +335,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("NotificationID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationID"));
 
                     b.Property<string>("NotificationColor")
                         .HasColumnType("nvarchar(max)");
@@ -352,8 +366,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("MailID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MailID"));
 
                     b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");
@@ -370,8 +385,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("TeamID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeamID"));
 
                     b.Property<string>("TeamName")
                         .HasColumnType("nvarchar(max)");
@@ -385,8 +401,9 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Property<int>("WriterID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WriterID"));
 
                     b.Property<string>("WriterAbout")
                         .HasColumnType("nvarchar(max)");

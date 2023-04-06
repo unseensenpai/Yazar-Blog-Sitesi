@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-CRHO7CM;database=CoreBlogDb; integrated security=true;");
+            optionsBuilder.UseSqlServer("server=IT-SGULMEZ-LPT\\SQLEXPRESS;database=CoreBlogDb; integrated security=true;");
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder) // Çoklu ilişki için birden fazla foreign
